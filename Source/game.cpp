@@ -12,7 +12,7 @@
 
 using namespace std;
 
-class HUDline // индикация "хелсбара"
+class HUDline // РёРЅРґРёРєР°С†РёСЏ "С…РµР»СЃР±Р°СЂР°"
 {
 public:
 	float r, g, b;
@@ -20,7 +20,7 @@ public:
 	float y2 = 100.0; 
 	float i;
 
-	HUDline(float _i) // конструктор определяет цвет линии 
+	HUDline(float _i) // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РѕРїСЂРµРґРµР»СЏРµС‚ С†РІРµС‚ Р»РёРЅРёРё 
 	{
 		if (_i <= 50)
 		{
@@ -37,7 +37,7 @@ public:
 		i = _i;
 	}
 
-	void drawline() // метод отрисовки единичной линии "хелсбара"
+	void drawline() // РјРµС‚РѕРґ РѕС‚СЂРёСЃРѕРІРєРё РµРґРёРЅРёС‡РЅРѕР№ Р»РёРЅРёРё "С…РµР»СЃР±Р°СЂР°"
 	{
 		glLineWidth(5.0);
 		glColor3f(r, g, b);
@@ -58,10 +58,10 @@ public:
 	}
 };
 
-class UI // класс методов User Interface
+class UI // РєР»Р°СЃСЃ РјРµС‚РѕРґРѕРІ User Interface
 {
 public:
-	float k = 50; //параметр-контроллер (он же количество "жизней")
+	float k = 50; //РїР°СЂР°РјРµС‚СЂ-РєРѕРЅС‚СЂРѕР»Р»РµСЂ (РѕРЅ Р¶Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ "Р¶РёР·РЅРµР№")
 	int score = 0;
 	float hits;
 	float clicks;
@@ -69,9 +69,9 @@ public:
 	int stage = 1;
 	const char* numchar;
 
-	UI(){}; // конструктор 
+	UI(){}; // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ 
 
-	void renew() // метод для переопределения переменных
+	void renew() // РјРµС‚РѕРґ РґР»СЏ РїРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅС‹С…
 	{
 		clicks = 0;
 		hits = 0;
@@ -80,7 +80,7 @@ public:
 		score = 0;
 	}
 
-	void drawHUD() // отрисовка HUD, контрольный параметр k
+	void drawHUD() // РѕС‚СЂРёСЃРѕРІРєР° HUD, РєРѕРЅС‚СЂРѕР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ k
 	{
 		glColor3f(0.3, 0.3, 0.3);
 		glLineWidth(10.0);
@@ -107,7 +107,7 @@ public:
 
 	}
 	
-	void drawAcc() // точность попаданий
+	void drawAcc() // С‚РѕС‡РЅРѕСЃС‚СЊ РїРѕРїР°РґР°РЅРёР№
 	{
 		if (clicks > 0)
 		{
@@ -124,7 +124,7 @@ public:
 			return;
 	}
 
-	void drawLevel() // отрисовка номера уровня
+	void drawLevel() // РѕС‚СЂРёСЃРѕРІРєР° РЅРѕРјРµСЂР° СѓСЂРѕРІРЅСЏ
 	{
 		stringstream temp_str;
 		temp_str << (stage);
@@ -134,7 +134,7 @@ public:
 		drawText(32, 7, 1.0, 0.0, 0.0, GLUT_BITMAP_TIMES_ROMAN_24, numchar);
 	}
 
-	void drawScore() // отрисовка очков
+	void drawScore() // РѕС‚СЂРёСЃРѕРІРєР° РѕС‡РєРѕРІ
 	{
 		stringstream temp_str;
 		temp_str << (score);
@@ -144,7 +144,7 @@ public:
 		drawText(90, 7, 1.0, 0.0, 0.0, GLUT_BITMAP_TIMES_ROMAN_24, numchar);
 	}
 
-	void drawText(float _x, float _y, float _r, float _g, float _b, void *font, const char *_str) // метод для отрисовки текста
+	void drawText(float _x, float _y, float _r, float _g, float _b, void *font, const char *_str) // РјРµС‚РѕРґ РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё С‚РµРєСЃС‚Р°
 	{
 		glColor3f(_r, _g, _b);
 		glRasterPos2f(_x, _y);
@@ -156,7 +156,7 @@ public:
 		}
 	}
 
-	void drawIntro() // начальный экран
+	void drawIntro() // РЅР°С‡Р°Р»СЊРЅС‹Р№ СЌРєСЂР°РЅ
 	{
 		drawText(10, 10, 0.0, 0.0, 1.0, GLUT_BITMAP_TIMES_ROMAN_24, "Welcome to SIMPLECLICKER!");
 		drawText(10, 20, 0.0, 0.0, 1.0, GLUT_BITMAP_HELVETICA_18, "Hit targets with your mouse and progress through levels to GAIN MORE SCORE!");
@@ -166,22 +166,22 @@ public:
 		drawText(10, 90, 1.0, 1.0, 1.0, GLUT_BITMAP_HELVETICA_12, "Feb 2015");
 	}
 
-	void drawPause() // экран паузы
+	void drawPause() // СЌРєСЂР°РЅ РїР°СѓР·С‹
 	{
 		drawText(17, 50, 1.0, 0.0, 0.0, GLUT_BITMAP_TIMES_ROMAN_24, "GAME PAUSED. PRESS SPACE TO CONTINUE.");
 	}
 		
-	void strike() // успешный клик по цели, хелсы ++
+	void strike() // СѓСЃРїРµС€РЅС‹Р№ РєР»РёРє РїРѕ С†РµР»Рё, С…РµР»СЃС‹ ++
 	{
 		k++; k++;
 	}
 
-	void fail()  // успешный клик по цели, хелсы --
+	void fail()  // СѓСЃРїРµС€РЅС‹Р№ РєР»РёРє РїРѕ С†РµР»Рё, С…РµР»СЃС‹ --
 	{
 		k--; k--;
 	}
 
-	void scores() // эран "game over"
+	void scores() // СЌСЂР°РЅ "game over"
 	{
 		drawText(17, 20, 1.0, 0.0, 0.0, GLUT_BITMAP_TIMES_ROMAN_24, "YOU'VE RAN OUT OF ENERGY! GAME OVER.");
 
@@ -213,7 +213,7 @@ public:
 
 UI ui;
 
-class Target // содержит конструктор объектов-целей
+class Target // СЃРѕРґРµСЂР¶РёС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РѕР±СЉРµРєС‚РѕРІ-С†РµР»РµР№
 {
 public:
 	float x, y, r;
@@ -223,17 +223,17 @@ public:
 	}
 }; 
 
-class TargetManager // управление экземплярами целей и их отрисовкой
+class TargetManager // СѓРїСЂР°РІР»РµРЅРёРµ СЌРєР·РµРјРїР»СЏСЂР°РјРё С†РµР»РµР№ Рё РёС… РѕС‚СЂРёСЃРѕРІРєРѕР№
 {
 public:
 	float x, y, r;
-	float diff_r = 0.05; // скорость роста радиуса цели - > отвечает за рост сложности
-	unsigned int intended; // количество целей - > отвечает за рост сложности 
-	float maxr = 8.0; // радиус при достижении которого цель уничтожается
+	float diff_r = 0.05; // СЃРєРѕСЂРѕСЃС‚СЊ СЂРѕСЃС‚Р° СЂР°РґРёСѓСЃР° С†РµР»Рё - > РѕС‚РІРµС‡Р°РµС‚ Р·Р° СЂРѕСЃС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё
+	unsigned int intended; // РєРѕР»РёС‡РµСЃС‚РІРѕ С†РµР»РµР№ - > РѕС‚РІРµС‡Р°РµС‚ Р·Р° СЂРѕСЃС‚ СЃР»РѕР¶РЅРѕСЃС‚Рё 
+	float maxr = 8.0; // СЂР°РґРёСѓСЃ РїСЂРё РґРѕСЃС‚РёР¶РµРЅРёРё РєРѕС‚РѕСЂРѕРіРѕ С†РµР»СЊ СѓРЅРёС‡С‚РѕР¶Р°РµС‚СЃСЏ
 	const unsigned int max_targ = 5;
 
 	
-	void stagecreate() // переход между уровнями
+	void stagecreate() // РїРµСЂРµС…РѕРґ РјРµР¶РґСѓ СѓСЂРѕРІРЅСЏРјРё
 	{
 		if (intended < max_targ)
 		{
@@ -249,7 +249,7 @@ public:
 	}
 
 	vector<Target> targetlist; 
-	void createTarget() // созадем цели
+	void createTarget() // СЃРѕР·Р°РґРµРј С†РµР»Рё
 	{
 		x = 10 + rand() % 80;
 		y = 20 + rand() % 60;
@@ -258,9 +258,9 @@ public:
 		targetlist.push_back(target);
 	}
 
-	void listfiller() // заполняем вектор
+	void listfiller() // Р·Р°РїРѕР»РЅСЏРµРј РІРµРєС‚РѕСЂ
 	{
-		// количество целей 
+		// РєРѕР»РёС‡РµСЃС‚РІРѕ С†РµР»РµР№ 
 		while (targetlist.size() != intended)
 		{
 			createTarget();
@@ -284,15 +284,15 @@ public:
 		}
 	}
 
-	void statuscheck() // время жизни, рост радиуса
+	void statuscheck() // РІСЂРµРјСЏ Р¶РёР·РЅРё, СЂРѕСЃС‚ СЂР°РґРёСѓСЃР°
 	{
-		vector<Target>::iterator i = targetlist.begin();   // <<<- конструкция работает с while но не работает через for. Почему???
+		vector<Target>::iterator i = targetlist.begin();   // <<<- РєРѕРЅСЃС‚СЂСѓРєС†РёСЏ СЂР°Р±РѕС‚Р°РµС‚ СЃ while РЅРѕ РЅРµ СЂР°Р±РѕС‚Р°РµС‚ С‡РµСЂРµР· for. РџРѕС‡РµРјСѓ???
 		while (i != targetlist.end())
 		{
-			if (i->r > maxr)// время жизни цели
+			if (i->r > maxr)// РІСЂРµРјСЏ Р¶РёР·РЅРё С†РµР»Рё
 			{
-				i = targetlist.erase(i); //удаляем объект
-				ui.fail(); //переопределяем контрольный параметр 
+				i = targetlist.erase(i); //СѓРґР°Р»СЏРµРј РѕР±СЉРµРєС‚
+				ui.fail(); //РїРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј РєРѕРЅС‚СЂРѕР»СЊРЅС‹Р№ РїР°СЂР°РјРµС‚СЂ 
 				ui.score -= 7*ui.stage*10*0.7;
 				if (ui.score < 0)
 				{
@@ -301,13 +301,13 @@ public:
 			}
 			else
 			{
-				i->r+=diff_r; // инкремент радиуса
+				i->r+=diff_r; // РёРЅРєСЂРµРјРµРЅС‚ СЂР°РґРёСѓСЃР°
 				++i;
 			}
 		}
 	}
 
-	void strikecheck(float _x0, float _y0) // проверка попадания
+	void strikecheck(float _x0, float _y0) // РїСЂРѕРІРµСЂРєР° РїРѕРїР°РґР°РЅРёСЏ
 	{
 		float x0 = _x0;
 		float y0 = _y0;
@@ -328,7 +328,7 @@ public:
 		}
 	}
 
-	void destructor() // убиваем вектор, сбрасываем все контрольные переменные к изначальным значениям
+	void destructor() // СѓР±РёРІР°РµРј РІРµРєС‚РѕСЂ, СЃР±СЂР°СЃС‹РІР°РµРј РІСЃРµ РєРѕРЅС‚СЂРѕР»СЊРЅС‹Рµ РїРµСЂРµРјРµРЅРЅС‹Рµ Рє РёР·РЅР°С‡Р°Р»СЊРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј
 	{
 		vector<Target>().swap(targetlist);
 		ui.k = 50;
@@ -340,20 +340,20 @@ public:
 
 TargetManager targetmanager;
 
-class GameDirector // класс управляющих методов
+class GameDirector // РєР»Р°СЃСЃ СѓРїСЂР°РІР»СЏСЋС‰РёС… РјРµС‚РѕРґРѕРІ
 {
 public:
-	int state = 0; // переменная флаг - для определения в каком состоянии сценарий игры
-	bool spacepressed = false; // нажат ли пробел
+	int state = 0; // РїРµСЂРµРјРµРЅРЅР°СЏ С„Р»Р°Рі - РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ РІ РєР°РєРѕРј СЃРѕСЃС‚РѕСЏРЅРёРё СЃС†РµРЅР°СЂРёР№ РёРіСЂС‹
+	bool spacepressed = false; // РЅР°Р¶Р°С‚ Р»Рё РїСЂРѕР±РµР»
 
-	GameDirector(){} // конструктор по умолчанию
+	GameDirector(){} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-	void mainmenu() // intro главное меню предлагает начать игру, обясняет правила, "press space to start!"
+	void mainmenu() // intro РіР»Р°РІРЅРѕРµ РјРµРЅСЋ РїСЂРµРґР»Р°РіР°РµС‚ РЅР°С‡Р°С‚СЊ РёРіСЂСѓ, РѕР±СЏСЃРЅСЏРµС‚ РїСЂР°РІРёР»Р°, "press space to start!"
 	{
 		ui.drawIntro();
 	}
 
-	void gameprocess() // метод запускает процесс игры, с нужными параметрами (зависит от уровня) / текст - уровень, очки, "press space to pause"
+	void gameprocess() // РјРµС‚РѕРґ Р·Р°РїСѓСЃРєР°РµС‚ РїСЂРѕС†РµСЃСЃ РёРіСЂС‹, СЃ РЅСѓР¶РЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё (Р·Р°РІРёСЃРёС‚ РѕС‚ СѓСЂРѕРІРЅСЏ) / С‚РµРєСЃС‚ - СѓСЂРѕРІРµРЅСЊ, РѕС‡РєРё, "press space to pause"
 	{
 		ui.drawHUD();
 		targetmanager.stagecreate();
@@ -366,14 +366,14 @@ public:
 		}
 	}
 
-	void gamepause() // ставит на паузу 
+	void gamepause() // СЃС‚Р°РІРёС‚ РЅР° РїР°СѓР·Сѓ 
 	{
 		ui.drawHUD();
 		targetmanager.drawTargets();
 		ui.drawPause(); 
 	}
 
-	void gameover() // заканчивает игру, предлагает рестарт, показывает набранные очки, таблицу top score, "press space to restart, удаляем ненужные данные векторов, очков и т.п.
+	void gameover() // Р·Р°РєР°РЅС‡РёРІР°РµС‚ РёРіСЂСѓ, РїСЂРµРґР»Р°РіР°РµС‚ СЂРµСЃС‚Р°СЂС‚, РїРѕРєР°Р·С‹РІР°РµС‚ РЅР°Р±СЂР°РЅРЅС‹Рµ РѕС‡РєРё, С‚Р°Р±Р»РёС†Сѓ top score, "press space to restart, СѓРґР°Р»СЏРµРј РЅРµРЅСѓР¶РЅС‹Рµ РґР°РЅРЅС‹Рµ РІРµРєС‚РѕСЂРѕРІ, РѕС‡РєРѕРІ Рё С‚.Рї.
 	{
 		ui.scores();
 		targetmanager.destructor();
@@ -386,7 +386,7 @@ void display()
 {
 	glClear(GL_COLOR_BUFFER_BIT); 
 
-	//реализуем "сценарий" программы
+	//СЂРµР°Р»РёР·СѓРµРј "СЃС†РµРЅР°СЂРёР№" РїСЂРѕРіСЂР°РјРјС‹
 	
 	switch (director.state)
 	{
@@ -442,7 +442,7 @@ void Timer(int)
 	glutTimerFunc(50, Timer, 0);
 }
 
-void MouseFunc(int button, int state, int x, int y) // обрабатываем мышь
+void MouseFunc(int button, int state, int x, int y) // РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РјС‹С€СЊ
 {
 	if ((button == GLUT_LEFT_BUTTON) && (state == GLUT_DOWN))
 	{
@@ -454,7 +454,7 @@ void MouseFunc(int button, int state, int x, int y) // обрабатываем мышь
 	}
 }
 
-void KeyboardFunc(unsigned char key, int x, int y) // обрабатываем клавиатуру
+void KeyboardFunc(unsigned char key, int x, int y) // РѕР±СЂР°Р±Р°С‚С‹РІР°РµРј РєР»Р°РІРёР°С‚СѓСЂСѓ
 {
 	switch (key)
 	{
